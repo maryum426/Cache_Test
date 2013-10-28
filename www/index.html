@@ -1,25 +1,29 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Examples</title>
-	<script src="phonegap.js"></script>
-	<style>
-		/* just to make the page look a little nicer.. no use for the example in itself.. */
-		body { background-color: #eef;  }
-		h1 { text-align: center; }
-		li { padding: 1em; }
-	</style>
-</head>
-<body>
-
-<h1>imgcache.js - examples</h1>
-
-<ul>
-	<li><a href="examples/example1.html">Example #1</a></li>
-	<li><a href="examples/example2.html">Example #2</a></li>
-	<li><a href="examples/tests.html">Automated tests</a></li>
-</ul>
-
-</body>
+<html manifest="AppCache_Example.appcache">
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="appcache-test.css" type="text/css">
+        
+    </head>
+    <body>
+        <div id="cache">Cache Testing</div>
+        
+        <div>
+	<h3>Local image</h3>
+	<!-- random image on domain with CORS enabled -->
+	<img src="back.jpg" width="120" height="82" id="local_cors">
+        </div>
+        
+        <div>
+	<h3>Remote image</h3>
+	<!-- random image on domain with CORS enabled -->
+	<img src="http://data-gov.tw.rpi.edu/w/images/thumb/b/b1/State-lib-sum.png/120px-State-lib-sum.png" width="120" height="82" id="remote_cors">
+        </div>
+        
+    </body>
 </html>
