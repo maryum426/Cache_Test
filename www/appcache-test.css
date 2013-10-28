@@ -1,14 +1,9 @@
-
-root { 
-    display: block;
-}
-
-.body{
-    background-color: lightpink;
+body{
+    background: lightpink;
     font-family: sans-serif;
-    font-size: 20px;
+    font-size: 40px;
 }
 
 #cache{
-    background-image: url(back.jpg);
+
 }
