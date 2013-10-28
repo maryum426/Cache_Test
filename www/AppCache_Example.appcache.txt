@@ -4,6 +4,7 @@ CACHE MANIFEST
 CACHE:
 index.html
 appcache-test.css
+http://data-gov.tw.rpi.edu/w/images/thumb/b/b1/State-lib-sum.png/120px-State-lib-sum.png
 
  
 NETWORK:
