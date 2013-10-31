@@ -7,21 +7,31 @@ and open the template in the editor.
     <head>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="appcache-test.css" type="text/css">
-        <meta http-equiv="cache-control" content="no-cache"/>
-        <meta http-equiv="pragma" content="no-cache"/>
-        <script src="phonegap.js"></script>
+        
+        <meta http-equiv="cache-control" content="public"/>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
         
     </head>
     <body>
-        <div id="cache" onclick="nextPage()">Cache Testing</div>
+        <input type="text" id="address" placeholder="Location" />
         
         
-        
-    </body>
-    <script>
-        function nextPage(){
-            location.href = "nextpage.html";
+         <script>
+        document.addEventListener("deviceready", preDeviceReady, false); //phonegap code
+
+        function preDeviceReady() {
+        google.load('maps','3.9',{'other_params':'sensor=true&libraries=places&language=en','callback':onDeviceReady});
+
+        }
+
+        function onDeviceReady() {
+
+        var bnds = new google.maps.LatLng(43.83,-37.27);
+        var ac = new google.maps.places.Autocomplete(document.getElementById('adr'),bnds);
         }
     </script>
+    </body>
+    
+   
 </html>
