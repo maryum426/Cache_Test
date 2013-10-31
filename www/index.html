@@ -14,23 +14,77 @@ and open the template in the editor.
         
     </head>
     <body>
-        <input type="text" id="address" placeholder="Location" />
+        <script src="http://maps.google.com/maps/api/js?v=3.exp&libraries=places&sensor=false"></script>
+        <div id="map_search">
+            <input id="searchTextField" type="text" size="50" placeholder="Search Box">
+        </div>
+        <div id="map_canvas"></div>
         
-        
-         <script>
-        document.addEventListener("deviceready", preDeviceReady, false); //phonegap code
+        <script>
+             $(function () {
+                    var latitude = 37.081476,
+                        longitude = -94.510574;
 
-        function preDeviceReady() {
-        google.load('maps','3.9',{'other_params':'sensor=true&libraries=places&language=en','callback':onDeviceReady});
+                    // Map Options
+                    var myOptions = {
+                        center: new google.maps.LatLng(latitude, longitude),
+                        streetViewControl: false,
+                        zoom: 16,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                        mapTypeControl: false,
+                        styles: [{
+                            featureType: "poi",
+                            elementType: "labels",
+                            stylers: [{
+                                visibility: "off"
+                            }]
+                        }]
+                    },
 
-        }
+                    // Create the Map Object
+                    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions),
 
-        function onDeviceReady() {
+                        // Add Marker
+                        pos = new google.maps.LatLng(latitude, longitude);
 
-        var bnds = new google.maps.LatLng(43.83,-37.27);
-        var ac = new google.maps.places.Autocomplete(document.getElementById('address'),bnds);
-        }
-    </script>
+                    // Create Marker Object
+                    marker = new google.maps.Marker({
+                        position: pos,
+                        map: map
+                    }),
+
+                    // Assign Search Box
+                    input = /** @type {HTMLInputElement} */
+                    (document.getElementById('searchTextField')),
+                    searchBox = new google.maps.places.SearchBox(input);
+
+
+
+                    // Event Listener - Move the Map on Search Results
+                    google.maps.event.addListener(searchBox, 'places_changed', function () {
+                        var places = searchBox.getPlaces();
+                        pos = new google.maps.LatLng(places[0].geometry.location.jb, places[0].geometry.location.kb);
+                        map.setCenter(pos);
+                        marker.setMap(null);
+                        marker = new google.maps.Marker({
+                            position: pos,
+                            map: map
+                        });
+                    });
+
+                    // Event Listener - Move the Map Center on Click
+                    google.maps.event.addListener(map, 'click', function (event) {
+                        map.setCenter(event.latLng);
+                        marker.setMap(null);
+                        marker = new google.maps.Marker({
+                            position: event.latLng,
+                            map: map
+                        });
+                    });
+                });
+            
+            
+        </script>
     </body>
     
    
